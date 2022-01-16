@@ -24,4 +24,7 @@ result_dir = r"C:\.......\align_img_document\results"
 python app.py
 ```
 2. Browse http://127.0.0.1:5000/
-3. Upload image(s)
+3. Upload image(s) and Sumbit
+
+![alt text](https://github.com/AwaleSajil/align_img_document/blob/main/read_me_img/upload_img.png?raw=true)
+
