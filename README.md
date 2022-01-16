@@ -28,3 +28,13 @@ python app.py
 
 ![alt text](https://github.com/AwaleSajil/align_img_document/blob/main/read_me_img/upload_img.png?raw=true)
 
+4. Finally, the aligned image is returned as base64 encoding
+
+![result](https://github.com/AwaleSajil/align_img_document/blob/main/read_me_img/result.png?raw=true)
+
+5. Also, note that the resulted (aligned images) are also saved to the results directory
+
+
+## Problem 2: Function that will convert the base64 image into an image and save it to a given location
+
+Please find this function ```def save_base64_img(image_64_encode, loc)``` in file utils.py
