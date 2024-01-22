@@ -56,30 +56,32 @@ def align_image_stage2(s1,guss_sigma = 7):
   s1_bw = cv.cvtColor(s1, cv.COLOR_BGR2GRAY)
   s1_bin = cv.threshold(s1_bw, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[1]
 
-  projection = np.sum(s1_bin, 1)
-  smooth_projection = gaussian_filter1d(projection,guss_sigma)
+  # projection = np.sum(s1_bin, 1)
+  # smooth_projection = gaussian_filter1d(projection,guss_sigma)
 
 
-  mask = smooth_projection > np.average(smooth_projection)
-  edges = np.convolve(mask, [1, -1])
+  # mask = smooth_projection > np.average(smooth_projection)
+  # edges = np.convolve(mask, [1, -1])
   
-  line_starts = np.where(edges == 1)[0]
-  line_endings = np.where(edges == -1)[0]
+  # line_starts = np.where(edges == 1)[0]
+  # line_endings = np.where(edges == -1)[0]
 
-  if len(line_starts) == 0:
-    return None, s1
+  # if len(line_starts) == 0:
+  #   return None, s1
 
-  lower_peaks = 0
-  for start, end in zip(line_starts, line_endings):
-    line = smooth_projection[start:end]
-    if np.argmax(line) < len(line)/2:
-        lower_peaks += 1
+  # lower_peaks = 0
+  # for start, end in zip(line_starts, line_endings):
+  #   line = smooth_projection[start:end]
+  #   if np.argmax(line) < len(line)/2:
+  #       lower_peaks += 1
 
   # print(lower_peaks / len(line_starts))
   s1_bin_top_heavy_index = np.sum(s1_bin[:s1_bin.shape[0]//2,:])/np.sum(s1_bin)
-  s1_bin_projection_confidence = (lower_peaks / len(line_starts))
+  # s1_bin_projection_confidence = (lower_peaks / len(line_starts))
 
-  comb_metric = 0.7*s1_bin_top_heavy_index + 0.3*s1_bin_projection_confidence
+  comb_metric = s1_bin_top_heavy_index
+
+  # comb_metric = 0.7*s1_bin_top_heavy_index + 0.3*s1_bin_projection_confidence
 
   if (comb_metric) < 0.5:
     return 1, cv.rotate(s1, cv.ROTATE_180)
