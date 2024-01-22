@@ -48,7 +48,7 @@ def align_image_stage1(orig_img, img_bin, height, width, threshold = 200, varian
     elif rotation_angle > 0:
       orig_img = cv.rotate(orig_img, cv.ROTATE_90_COUNTERCLOCKWISE)
       rotation_angle -= 90
-  M = cv.getRotationMatrix2D((orig_img.shape[1] // 2, orig_img.shape[0] // 2), rotation_angle, 1)
+  M = cv.getRotationMatrix2D((orig_img.shape[1] // 2, orig_img.shape[0] // 2), -rotation_angle, 1)
   img = cv.warpAffine(orig_img, M, (orig_img.shape[1], orig_img.shape[0]), borderMode=cv.BORDER_REPLICATE)
   return 1, img
 
